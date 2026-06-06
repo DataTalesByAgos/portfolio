@@ -1,0 +1,177 @@
+[
+  {
+    "id": 3,
+    "category": "Standalone",
+    "title": "Healthcare Document Intelligence",
+    "description": "Plataforma AI para recuperación y análisis de documentación clínica. Extrae evidencia, responde consultas sobre historias médicas y apoya auditorías mediante RAG y LLMs.",
+    "tools": [
+      "Python",
+      "NLP",
+      "RAG",
+      "FastAPI",
+      "LLMs"
+    ],
+    "year": "Junio 2026",
+    "repo": "https://github.com/DataTalesByAgos/Healthcare-Document-Intelligence-Platform",
+    "image": "/projects/rag_salud1.png",
+    "images": [
+      "/projects/rag_salud1.png"
+    ],
+    "metric": "Recuperación clínica contextual"
+  },
+  {
+    "id": 4,
+    "category": "Standalone",
+    "title": "Urban Mobility Analytics MVP",
+    "description": "Prototipo de analítica de movilidad urbana con datos abiertos SUBE y GTFS. Visualizaciones geoespaciales e indicadores para planificación del transporte.",
+    "tools": [
+      "Python",
+      "Streamlit",
+      "GeoPandas",
+      "GTFS",
+      "Folium"
+    ],
+    "year": "Junio 2026",
+    "repo": "https://github.com/DataTalesByAgos/Urban-Mobility-Analytics-MVP-",
+    "image": "/projects/urbanMobility2.png",
+    "images": [
+      "/projects/urbanMobility2.png",
+      "/projects/urban_mogility1.png"
+    ],
+    "metric": "Movilidad urbana open data"
+  },
+  {
+    "id": 2,
+    "category": "Standalone",
+    "title": "QuantLab",
+    "description": "Plataforma modular de backtesting y análisis cuantitativo. Soporta estrategias de Mean Reversion, Momentum y Pairs Trading con motor de eventos, notebooks estadísticos, backend FastAPI y dashboard dinámico.",
+    "tools": [
+      "Python",
+      "FastAPI",
+      "JavaScript",
+      "Docker"
+    ],
+    "year": "Mayo 2026",
+    "repo": "https://github.com/DataTalesByAgos/QuantLab",
+    "deploy": "https://quantlab-liard-delta.vercel.app/",
+    "image": "/projects/quantlab_architecture.png",
+    "images": [
+      "/projects/quantlab_architecture.png"
+    ],
+    "metric": "Backtesting event-driven end-to-end"
+  },
+  {
+    "id": 9,
+    "category": "Creative Coding",
+    "title": "Mini DEX",
+    "description": "Exchange descentralizado educativo en Solidity para intercambio de tokens ERC-20 con lógica de comisiones LP.",
+    "tools": [
+      "Solidity",
+      "React",
+      "Ethers.js",
+      "Hardhat"
+    ],
+    "year": "Mayo 2026",
+    "repo": "https://github.com/DataTalesByAgos/mini-dex",
+    "image": "/projects/miniDex.png",
+    "images": [
+      "/projects/miniDex.png"
+    ],
+    "metric": "DeFi educativo on-chain"
+  },
+  {
+    "id": 1,
+    "category": "Standalone",
+    "title": "Cazador de Precios",
+    "description": "Herramienta de scraping y análisis de precios en supermercados. Detecta variaciones, anomalías y genera indicadores para transparencia de precios.",
+    "tools": [
+      "Python",
+      "ML",
+      "Web Scraping",
+      "SQL"
+    ],
+    "year": "Abril 2026",
+    "repo": "https://github.com/DataTalesByAgos/Cazador-De-Precios",
+    "image": "/projects/cazador_precios.png",
+    "images": [
+      "/projects/cazador_precios.png"
+    ],
+    "metric": "Monitoreo automatizado de precios"
+  },
+  {
+    "id": 7,
+    "category": "Research",
+    "title": "Detección de Fraude Financiero",
+    "description": "Modelo predictivo de alta precisión para identificar transacciones fraudulentas en canales de pago con datos severamente desbalanceados.",
+    "tools": [
+      "Python",
+      "LightGBM",
+      "Scikit-Learn",
+      "FastAPI"
+    ],
+    "year": "Marzo 2026",
+    "image": "/projects/project-3.png",
+    "images": [
+      "/projects/project-3.png"
+    ],
+    "metric": "Clasificación con datos desbalanceados"
+  },
+  {
+    "id": 8,
+    "category": "Research",
+    "title": "Global Earthquake-Tsunami Risk Assessment",
+    "description": "Análisis y modelo predictivo del riesgo de tsunamis generados por actividad sísmica global, con mapas interactivos.",
+    "tools": [
+      "Python",
+      "XGBoost",
+      "Pandas",
+      "Folium"
+    ],
+    "year": "Noviembre 2025",
+    "repo": "https://www.kaggle.com/code/datatalesbyagos/global-earthquake-tsunami-risk-assessment",
+    "image": "/projects/project-1.png",
+    "images": [
+      "/projects/project-1.png"
+    ],
+    "metric": "Análisis de riesgo y mapeo interactivo"
+  },
+  {
+    "id": 5,
+    "category": "Systems",
+    "title": "ERP Fullstack — Gestión de Construcción",
+    "description": "Plataforma de gestión para operaciones, recursos y finanzas en obras civiles. Centraliza información crítica para visibilidad de procesos y toma de decisiones.",
+    "tools": [
+      "FastAPI",
+      "React",
+      "SQLAlchemy",
+      "PostgreSQL",
+      "Docker"
+    ],
+    "year": "Agosto 2025",
+    "image": "/projects/ERP.png",
+    "images": [
+      "/projects/ERP.png"
+    ],
+    "metric": "ERP end-to-end en producción"
+  },
+  {
+    "id": 6,
+    "category": "Systems",
+    "title": "ConstruIA",
+    "description": "Solución AI para optimización de planificación, cómputos métricos y control de gestión en obras civiles.",
+    "tools": [
+      "Python",
+      "TensorFlow",
+      "OpenCV",
+      "Flask",
+      "Botpress"
+    ],
+    "year": "Junio 2025",
+    "deploy": "https://grupo3-delta.vercel.app/",
+    "image": "/projects/construia.png",
+    "images": [
+      "/projects/construia.png"
+    ],
+    "metric": "IA aplicada a la construcción"
+  }
+]

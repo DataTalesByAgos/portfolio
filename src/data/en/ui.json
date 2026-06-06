@@ -1,0 +1,166 @@
+{
+  "nav": {
+    "profile": "Profile",
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "titlePart1": "AI & Product",
+    "titlePart2": "",
+    "titlePart3": "Engineer",
+    "intro": "I am",
+    "viewProjects": "View Projects",
+    "contact": "Contact"
+  },
+  "personalInfo": {
+    "name": "Agostina Silva",
+    "role": "AI & Product Engineer",
+    "location": "Argentina",
+    "bio": "I design end-to-end AI systems that connect machine learning models with real products and production environments.",
+    "email": "agostina.dev.dc@gmail.com",
+    "github": "https://github.com/DataTalesByAgos",
+    "linkedin": "https://linkedin.com/in/agostinadevdc",
+    "twitter": "https://x.com/eriza96"
+  },
+  "valueCards": [
+    {
+      "title": "Scalable Models",
+      "desc": "ML architectures designed from day one for large-scale production."
+    },
+    {
+      "title": "Fintech Impact",
+      "desc": "Proven revenue growth and financial inclusion driven by alt-data algorithms."
+    },
+    {
+      "title": "AgroTech 4.0",
+      "desc": "Pioneering Computer Vision models for crop yield optimization in Latin America."
+    }
+  ],
+  "projectsSection": {
+    "tag": "Portfolio",
+    "title": "Projects",
+    "emptyState": "Projects in this category will be added soon."
+  },
+  "blogSection": {
+    "tag": "Writing",
+    "title": "Notes & Articles"
+  },
+  "experienceSection": {
+    "tag": "Timeline",
+    "title": "Experience"
+  },
+  "experience": [
+    {
+      "role": "Data Scientist Intern",
+      "company": "Corpora",
+      "period": "Sep 2025 — Nov 2025",
+      "description": "Designed and implemented automated end-to-end processes for operational KPI data capture, processing, and validation. Analyzed and optimized workflows, created indicators, and documented business logic."
+    }
+  ],
+  "skillsSection": {
+    "tag": "Technologies",
+    "title": "Tech Stack",
+    "focusTag": "Focus 2026",
+    "focusTitle": "Active Research",
+    "focusDesc": "Active research in quant, machine learning, and data-driven systems."
+  },
+  "skillsGroups": [
+    {
+      "id": "software-dev",
+      "title": "Software Development",
+      "skills": [
+        "Python",
+        "TypeScript",
+        "JavaScript",
+        "FastAPI",
+        "React",
+        "Angular",
+        "REST APIs",
+        "Git",
+        "GitHub"
+      ]
+    },
+    {
+      "id": "data-eng",
+      "title": "Data Engineering",
+      "skills": [
+        "ETL / ELT",
+        "Apache Airflow",
+        "Kafka",
+        "Pentaho",
+        "N8N",
+        "Data modeling & validation",
+        "Pipeline automation"
+      ]
+    },
+    {
+      "id": "databases",
+      "title": "Databases",
+      "skills": [
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "Redis",
+        "ChromaDB",
+        "FAISS",
+        "SQL & NoSQL"
+      ]
+    },
+    {
+      "id": "ml-ai",
+      "title": "Machine Learning & AI",
+      "skills": [
+        "Scikit-Learn",
+        "TensorFlow",
+        "PyTorch",
+        "NLP & LLMs",
+        "LangChain",
+        "Hugging Face",
+        "Ollama",
+        "RAG & Embeddings",
+        "Model & AI system evaluation"
+      ]
+    },
+    {
+      "id": "data-analysis",
+      "title": "Data Analysis",
+      "skills": [
+        "EDA",
+        "Power BI",
+        "Looker",
+        "Data visualization",
+        "KPIs & metrics",
+        "Excel & Google Sheets"
+      ]
+    },
+    {
+      "id": "cloud-devops",
+      "title": "Cloud & DevOps",
+      "skills": [
+        "AWS (EC2, S3, Lambda)",
+        "Docker",
+        "Linux",
+        "CI/CD"
+      ]
+    },
+    {
+      "id": "product-arch",
+      "title": "Product & Architecture",
+      "skills": [
+        "End-to-end solution design",
+        "Application architecture",
+        "Systems integration",
+        "Requirements gathering",
+        "Agile methodologies"
+      ]
+    }
+  ],
+  "contactSection": {
+    "tag": "Contact",
+    "title": "Shall we start a conversation?",
+    "desc": "If you are looking to take your product's data engineering/ML components to a world-class level, let's connect.",
+    "footerRights": "All rights reserved.",
+    "footerMadeIn": "Made in Argentina"
+  }
+}

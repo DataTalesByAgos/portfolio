@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import portfolioData from './data.json'
+import portfolioData from './data'
 
 /* ── Video Background Container ── */
 const VideoContainer = ({ children }) => {
@@ -185,6 +185,12 @@ const IconDeploy = () => (
 const IconX = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
 )
+const IconCopy = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
+)
+const IconCheck = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+)
 const IconChevronDown = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6" /></svg>
 )
@@ -289,6 +295,23 @@ function App() {
   const [activeSkillGroup, setActiveSkillGroup] = useState('software-dev')
   const [skillsPage, setSkillsPage] = useState(0)
   const data = portfolioData[language]
+  
+  const [showEmailTooltip, setShowEmailTooltip] = useState(false)
+  const [isCopied, setIsCopied] = useState(false)
+  const [emailAddress, setEmailAddress] = useState('')
+
+  React.useEffect(() => {
+    // Obfuscated email reconstruction to prevent easy automated scraping
+    const parts = ['agostina', 'dev', 'dc', 'gmail.com']
+    setEmailAddress(`${parts[0]}.${parts[1]}.${parts[2]}@${parts[3]}`)
+  }, [])
+
+  const handleCopyEmail = (e) => {
+    e.preventDefault()
+    navigator.clipboard.writeText(emailAddress)
+    setIsCopied(true)
+    setTimeout(() => setIsCopied(false), 2000)
+  }
 
   const filteredProjects = data.projects.filter(p => p.category === activeTab)
 
@@ -347,7 +370,7 @@ function App() {
           pointerEvents: 'none',
         }}
       >
-        <source src="/Enhancer-HD-Upscaler-1080P - HD-bg_done.mp4" type="video/mp4" />
+        <source src="/ui/Enhancer-HD-Upscaler-1080P - HD-bg_done.mp4" type="video/mp4" />
       </video>
 
       {/* Background Dimming Overlay */}
@@ -965,8 +988,69 @@ function App() {
             <a href={data.personalInfo.github} target="_blank" rel="noopener noreferrer" className="social-btn" style={{ ...s.circleBtn, background: '#fff', color: '#181717' }}><IconGithub /></a>
             <a href={data.personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="social-btn" style={{ ...s.circleBtn, background: '#0a66c2', borderColor: '#0a66c2', color: '#fff' }}><IconLinkedin /></a>
             <a href={data.personalInfo.twitter} target="_blank" rel="noopener noreferrer" className="social-btn" style={{ ...s.circleBtn, background: '#000000', borderColor: 'rgba(255, 255, 255, 0.15)', color: '#fff' }}><IconX /></a>
-            <a href={`mailto:${data.personalInfo.email}`} className="social-btn" style={s.mailBtn}><IconMail /> {data.personalInfo.email}</a>
+            <button
+              onClick={handleCopyEmail}
+              onMouseEnter={() => setShowEmailTooltip(true)}
+              onMouseLeave={() => setShowEmailTooltip(false)}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 10,
+                height: 46,
+                padding: '0 24px',
+                borderRadius: 999,
+                background: isCopied ? '#15803d' : '#16a34a',
+                color: '#fff',
+                fontSize: 13,
+                fontWeight: 600,
+                border: isCopied ? '1px solid #4ade80' : '1px solid transparent',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                boxShadow: isCopied ? '0 0 15px rgba(74, 222, 128, 0.4)' : '0 4px 12px rgba(22, 163, 74, 0.3)',
+                position: 'relative'
+              }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)' }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
+            >
+              {isCopied ? (
+                <>
+                  <IconCheck />
+                  <span>{language === 'es' ? '¡Correo copiado!' : 'Email copied!'}</span>
+                </>
+              ) : (
+                <>
+                  <IconMail />
+                  <span>{emailAddress || 'agostina.dev.dc@gmail.com'}</span>
+                  <IconCopy />
+                </>
+              )}
+
+              {/* Tooltip */}
+              {showEmailTooltip && !isCopied && (
+                <div style={{
+                  position: 'absolute',
+                  bottom: '125%',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  background: '#1e293b',
+                  color: '#fff',
+                  padding: '6px 12px',
+                  borderRadius: '6px',
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  whiteSpace: 'nowrap',
+                  boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  pointerEvents: 'none',
+                  zIndex: 10
+                }}>
+                  {language === 'es' ? 'Copiar al portapapeles' : 'Copy to clipboard'}
+                </div>
+              )}
+            </button>
           </div>
+          
+
           <div style={s.footer}>
             <p style={{ margin: 0 }}>© 2026 {data.personalInfo.name}. {data.contactSection.footerRights}</p>
             <p style={{ margin: 0, display: 'flex', alignItems: 'center', gap: 6 }}>{data.contactSection.footerMadeIn} <span style={s.dot} /></p>
@@ -1235,7 +1319,7 @@ function App() {
                     return (
                       <div key={index} style={{ margin: '40px 0', textAlign: 'center' }}>
                         <img
-                          src={activePost.image || '/vennD.png'}
+                          src={activePost.image || '/blog/vennD.png'}
                           alt="Venn Diagram"
                           style={{
                             maxWidth: '100%',
@@ -1297,7 +1381,7 @@ function App() {
                         {isAucHeading && (
                           <div style={{ margin: '30px 0', textAlign: 'center' }}>
                             <img
-                              src="/auc_posteo.png"
+                              src="/blog/auc_posteo.png"
                               alt="AUC Comparison"
                               style={{
                                 maxWidth: '100%',
@@ -1318,7 +1402,7 @@ function App() {
                         {isRagHeading && (
                           <div style={{ margin: '30px 0', textAlign: 'center' }}>
                             <img
-                              src="/rag_posteo.png"
+                              src="/blog/rag_posteo.png"
                               alt="RAG Architecture"
                               style={{
                                 maxWidth: '100%',
@@ -1406,7 +1490,7 @@ function App() {
                       {isNpuTriggerParagraph && (
                         <div style={{ margin: '40px 0', textAlign: 'center' }}>
                           <img
-                            src="/npu.png"
+                            src="/blog/npu.png"
                             alt="NPU"
                             style={{
                               maxWidth: '100%',

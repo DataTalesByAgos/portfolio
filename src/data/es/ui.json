@@ -1,0 +1,166 @@
+{
+  "nav": {
+    "profile": "Perfil",
+    "portfolio": "Portafolio",
+    "blog": "Blog",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "titlePart1": "AI & Product",
+    "titlePart2": "",
+    "titlePart3": "Engineer",
+    "intro": "Soy",
+    "viewProjects": "Ver Proyectos",
+    "contact": "Contactar"
+  },
+  "personalInfo": {
+    "name": "Agostina Silva",
+    "role": "AI & Product Engineer",
+    "location": "Argentina",
+    "bio": "Diseño sistemas de IA end-to-end que conectan modelos de machine learning con productos reales y entornos de producción.",
+    "email": "agostina.dev.dc@gmail.com",
+    "github": "https://github.com/DataTalesByAgos",
+    "linkedin": "https://linkedin.com/in/agostinadevdc",
+    "twitter": "https://x.com/eriza96"
+  },
+  "valueCards": [
+    {
+      "title": "Modelos Escalables",
+      "desc": "Arquitecturas ML diseñadas desde el primer día para producción de gran escala."
+    },
+    {
+      "title": "Impacto Fintech",
+      "desc": "Aumento comprobado del revenue e inclusión financiera con algoritmos alt-data."
+    },
+    {
+      "title": "AgroTech 4.0",
+      "desc": "Pionera en Computer Vision para optimización de rindes agrícolas en Latam."
+    }
+  ],
+  "projectsSection": {
+    "tag": "Portafolio",
+    "title": "Proyectos",
+    "emptyState": "Próximamente se añadirán proyectos en esta categoría."
+  },
+  "blogSection": {
+    "tag": "Bitácora",
+    "title": "Notas"
+  },
+  "experienceSection": {
+    "tag": "Trayectoria",
+    "title": "Experiencia"
+  },
+  "experience": [
+    {
+      "role": "Prácticas Data Scientist",
+      "company": "Corpora",
+      "period": "Sep 2025 — Nov 2025",
+      "description": "Diseño e implementación de procesos automáticos end-to-end para captura, procesamiento y validación de datos orientados a KPIs operativos. Análisis y optimización de flujos operativos, generación de indicadores y documentación de procesos y lógica de negocio."
+    }
+  ],
+  "skillsSection": {
+    "tag": "Tecnologías",
+    "title": "Stack Tecnológico",
+    "focusTag": "Focus 2026",
+    "focusTitle": "Investigación Activa",
+    "focusDesc": "Investigación activa en quant, machine learning y sistemas basados en datos."
+  },
+  "skillsGroups": [
+    {
+      "id": "software-dev",
+      "title": "Desarrollo de Software",
+      "skills": [
+        "Python",
+        "TypeScript",
+        "JavaScript",
+        "FastAPI",
+        "React",
+        "Angular",
+        "APIs REST",
+        "Git",
+        "GitHub"
+      ]
+    },
+    {
+      "id": "data-eng",
+      "title": "Ingeniería de Datos",
+      "skills": [
+        "ETL / ELT",
+        "Apache Airflow",
+        "Kafka",
+        "Pentaho",
+        "N8N",
+        "Modelado y validación de datos",
+        "Automatización de pipelines"
+      ]
+    },
+    {
+      "id": "databases",
+      "title": "Bases de Datos",
+      "skills": [
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "Redis",
+        "ChromaDB",
+        "FAISS",
+        "SQL y NoSQL"
+      ]
+    },
+    {
+      "id": "ml-ai",
+      "title": "Machine Learning & AI",
+      "skills": [
+        "Scikit-Learn",
+        "TensorFlow",
+        "PyTorch",
+        "NLP y LLMs",
+        "LangChain",
+        "Hugging Face",
+        "Ollama",
+        "RAG y Embeddings",
+        "Evaluación de modelos y sistemas IA"
+      ]
+    },
+    {
+      "id": "data-analysis",
+      "title": "Análisis de Datos",
+      "skills": [
+        "EDA",
+        "Power BI",
+        "Looker",
+        "Visualización de datos",
+        "KPIs y métricas",
+        "Excel y Google Sheets"
+      ]
+    },
+    {
+      "id": "cloud-devops",
+      "title": "Cloud & DevOps",
+      "skills": [
+        "AWS (EC2, S3, Lambda)",
+        "Docker",
+        "Linux",
+        "CI/CD"
+      ]
+    },
+    {
+      "id": "product-arch",
+      "title": "Producto y Arquitectura",
+      "skills": [
+        "Diseño de soluciones end-to-end",
+        "Arquitectura de aplicaciones",
+        "Integración de sistemas",
+        "Relevamiento de requerimientos",
+        "Metodologías ágiles"
+      ]
+    }
+  ],
+  "contactSection": {
+    "tag": "Contacto",
+    "title": "¿Iniciamos una charla?",
+    "desc": "Si estás buscando llevar el componente de datos de tu producto a un nivel de clase mundial, me encontrás acá.",
+    "footerRights": "Todos los derechos reservados.",
+    "footerMadeIn": "Hecho en Argentina"
+  }
+}
