@@ -1,5 +1,25 @@
 [
   {
+    "id": 10,
+    "category": "Creative Coding",
+    "title": "ANIMALIA Agents (w.i.p.)",
+    "description": "Evolutionary multi-agent ecosystem simulator designed as an experimental environment for AI agentic systems, where simple agents evolve toward systems with memory, planning, communication, and LLM-based reasoning.",
+    "tools": [
+      "Multi-agent ecosystems",
+      "AI Agentic Systems",
+      "Artificial life simulation",
+      "LLMs"
+    ],
+    "year": "June 2026",
+    "repo": "https://github.com/DataTalesByAgos/ANIMALIA-Agents",
+    "image": "/projects/Animalia Agents.png",
+    "images": [
+      "/projects/Animalia Agents.png",
+      "/projects/animalia_alpha.png"
+    ],
+    "metric": "Evolution of autonomous agents"
+  },
+  {
     "id": 3,
     "category": "Standalone",
     "title": "Healthcare Document Intelligence",
