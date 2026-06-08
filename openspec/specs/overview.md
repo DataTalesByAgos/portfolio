@@ -18,6 +18,10 @@ A premium lofi-themed portfolio website designed for an AI & Product Engineer. T
 - `public/`:
   - Assets like the video background `/ui/Enhancer-HD-Upscaler-1080P - HD-bg_done.mp4` and image folders.
 
+## Routing
+- **Bilingual Toggling**: Managed by the `language` state inside `App.jsx` and localized JSON structures.
+- **Deep Linking**: Blog posts are deeply linkable via URL hashes like `#post-{id}` (e.g., `#post-5`). If a user opens the page with a post hash, it opens automatically. Closing the post resets the hash back to `#blog`, returning the scroll position to the list. This supports forward/back navigation natively.
+
 ## Development Guide for AI Agents
 1. **Adding/Modifying Text Content**:
    - Locate the target text in `src/data/es/ui.json`.

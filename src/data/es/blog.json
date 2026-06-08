@@ -1,6 +1,7 @@
 [
   {
     "id": 5,
+    "slug": "usando-agentes-ia",
     "title": "¿Estamos usando los agentes de IA de la forma correcta?",
     "date": "Junio 2026",
     "readTime": "6 min",
@@ -112,6 +113,7 @@
   },
   {
     "id": 4,
+    "slug": "rust-npus",
     "title": "Rust, NPUs y una pregunta que no me puedo sacar de la cabeza",
     "date": "Junio 2026",
     "readTime": "5 min",
@@ -156,6 +158,7 @@
   },
   {
     "id": 1,
+    "slug": "realidad-rag",
     "title": "RAG y una realidad que suele pasar desapercibida",
     "date": "Mayo 2026",
     "readTime": "4 min lectura",
@@ -280,6 +283,7 @@
   },
   {
     "id": 3,
+    "slug": "performance-modelos",
     "title": "¿Estamos midiendo la performance correcta de nuestros modelos?",
     "date": "Abril 2026",
     "readTime": "7 min",

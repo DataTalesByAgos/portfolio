@@ -306,6 +306,39 @@ function App() {
     setEmailAddress(`${parts[0]}.${parts[1]}.${parts[2]}@${parts[3]}`)
   }, [])
 
+  // Sync activePost from/to URL hash using slug for descriptive sharing links
+  React.useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const post = portfolioData[language].blogPosts.find(p => p.slug === hash);
+        if (post) {
+          setActivePost(post);
+          return;
+        }
+      }
+      if (window.location.hash.startsWith('#') && !['blog', 'projects', 'about', 'contact'].includes(hash)) {
+        // Unknown hash, ignore
+      } else {
+        setActivePost(null);
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [language]);
+
+  React.useEffect(() => {
+    if (activePost && activePost.slug) {
+      if (window.location.hash !== `#${activePost.slug}`) {
+        window.history.pushState(null, '', `#${activePost.slug}`);
+      }
+    } else if (!activePost && window.location.hash && !['#blog', '#projects', '#about', '#contact'].includes(window.location.hash)) {
+      window.history.pushState(null, '', '#blog');
+    }
+  }, [activePost]);
+
   const handleCopyEmail = (e) => {
     e.preventDefault()
     navigator.clipboard.writeText(emailAddress)
