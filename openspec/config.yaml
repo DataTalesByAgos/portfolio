@@ -1,0 +1,32 @@
+schema: spec-driven
+context: |
+  This is a highly customized portfolio website for Agostina Silva (AI & Product Engineer).
+  
+  Tech Stack:
+  - Frontend: React 19, Vite 8, TailwindCSS 3, Framer Motion 12, Lucide React 1
+  - Fonts: VT323 (headings/pixel elements), JetBrains Mono, Fira Code, Inter
+  - Styling: Custom styles are defined in:
+    * Inline JSX styles inside src/App.jsx via the `const s = { ... }` object.
+    * Custom CSS animations injected via a `<style>` block in App.jsx.
+    * TailwindCSS is installed but UI mostly uses these custom styles to maintain a premium retro lofi aesthetic.
+    
+  Data & Localization:
+  - The site supports Spanish ('es') and English ('en') translation.
+  - Localization content is stored in JSON files under:
+    * UI Text: src/data/es/ui.json & src/data/en/ui.json
+    * Projects: src/data/es/projects.json & src/data/en/projects.json
+    * Blog Posts: src/data/es/blog.json & src/data/en/blog.json
+  - These are imported and unified by src/data/index.js, which exports `portfolioData`.
+  - ALWAYS update BOTH Spanish and English files when modifying or adding text content.
+
+  Key UI Elements:
+  - Video Background: Renders a loop video from `/ui/Enhancer-HD-Upscaler-1080P - HD-bg_done.mp4`.
+  - Lofi Clock: An interactive green pixel clock (VT323) showing current time. Can be adjusted via shift+alt+c.
+  - Responsive layout wrapper: Handles mobile screen sizing for grid elements.
+rules:
+  proposal:
+    - Ensure any proposed UI changes preserve the premium retro lofi dark mode aesthetic (glow effects, pixel elements, monospace typography, green/emerald accents).
+    - Responsive behavior must be verified on mobile sizes.
+  specs:
+    - Verify that all visible strings are localized in both Spanish (es) and English (en) JSON files.
+    - Avoid hardcoding strings directly in App.jsx. Use translation variables from `data` key.

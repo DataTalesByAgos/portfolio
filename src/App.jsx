@@ -1338,6 +1338,35 @@ function App() {
                       </div>
                     )
                   }
+
+                  if (paragraph.startsWith('__IMAGE_PATH:')) {
+                    const parts = paragraph.replace('__IMAGE_PATH:', '').split('|');
+                    const imgPath = parts[0];
+                    const caption = parts[1] || '';
+                    return (
+                      <div key={index} style={{ margin: '40px 0', textAlign: 'center' }}>
+                        <img
+                          src={imgPath}
+                          alt={caption}
+                          style={{
+                            maxWidth: '100%',
+                            borderRadius: '16px',
+                            boxShadow: '0 12px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(74, 222, 128, 0.25)',
+                            border: '1px solid rgba(74, 222, 128, 0.3)',
+                            maxHeight: '420px',
+                            objectFit: 'contain',
+                            background: '#0f172a',
+                            padding: '16px'
+                          }}
+                        />
+                        {caption && (
+                          <p style={{ color: '#94a3b8', fontSize: '13px', marginTop: '12px', fontStyle: 'italic', fontFamily: "'JetBrains Mono', monospace" }}>
+                            {caption}
+                          </p>
+                        )}
+                      </div>
+                    )
+                  }
                   const isNpuPost = activePost.id === 4 || activePost.title.toLowerCase().includes('npu');
                   const isNpuTriggerParagraph = isNpuPost && (
                     paragraph === "Ahora incluso aparecen PCs de consumo con NPUs integradas como un componente más del sistema." || 
