@@ -1,6 +1,7 @@
 [
   {
     "id": 5,
+    "slug": "using-ai-agents",
     "title": "Are we using AI agents the right way?",
     "date": "June 2026",
     "readTime": "6 min",
@@ -112,6 +113,7 @@
   },
   {
     "id": 4,
+    "slug": "rust-npus",
     "title": "Rust, NPUs and a question I can't get out of my head",
     "date": "June 2026",
     "readTime": "5 min",
@@ -156,6 +158,7 @@
   },
   {
     "id": 1,
+    "slug": "rag-reality",
     "title": "RAG and a Reality That Usually Goes Unnoticed",
     "date": "May 2026",
     "readTime": "4 min read",
@@ -280,6 +283,7 @@
   },
   {
     "id": 3,
+    "slug": "model-performance",
     "title": "Are We Measuring the Right Performance of Our Models?",
     "date": "April 2026",
     "readTime": "7 min",
@@ -332,6 +336,7 @@
   },
   {
     "id": 1,
+    "slug": "quantitative-finance",
     "title": "My Journey Into Quantitative Finance",
     "date": "March 2026",
     "readTime": "6 min",

@@ -1,5 +1,8 @@
-import React, { useState } from 'react'
-import portfolioData from './data'
+import React, { useState, useCallback } from 'react'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
+import portfolioData, { findBlogPostBySlug, getLocalizedPost } from './data'
+import SEOHead from './components/SEOHead'
+import { blogPostPath, homePath, isValidLocale, sectionPath } from './lib/routes'
 
 /* ── Video Background Container ── */
 const VideoContainer = ({ children }) => {
@@ -288,13 +291,38 @@ const s = {
 }
 
 function App() {
-  const [language, setLanguage] = useState('es')
+  const { lang, slug } = useParams()
+  const navigate = useNavigate()
+  const location = useLocation()
+  const language = lang === 'en' ? 'en' : 'es'
   const [activeTab, setActiveTab] = useState('Standalone')
   const [lightbox, setLightbox] = useState(null)
   const [activePost, setActivePost] = useState(null)
   const [activeSkillGroup, setActiveSkillGroup] = useState('software-dev')
   const [skillsPage, setSkillsPage] = useState(0)
   const data = portfolioData[language]
+
+  const openPost = useCallback((post) => {
+    if (post?.slug) navigate(blogPostPath(language, post.slug))
+  }, [language, navigate])
+
+  const closePost = useCallback(() => {
+    navigate(sectionPath(language, 'blog'))
+  }, [language, navigate])
+
+  const handleLanguageChange = useCallback((newLang) => {
+    if (newLang === language) return
+
+    if (slug && activePost) {
+      const localized = getLocalizedPost(language, newLang, activePost)
+      if (localized?.slug) {
+        navigate(blogPostPath(newLang, localized.slug))
+        return
+      }
+    }
+
+    navigate(`${homePath(newLang)}${location.hash}`)
+  }, [language, slug, activePost, location.hash, navigate])
   
   const [showEmailTooltip, setShowEmailTooltip] = useState(false)
   const [isCopied, setIsCopied] = useState(false)
@@ -306,38 +334,47 @@ function App() {
     setEmailAddress(`${parts[0]}.${parts[1]}.${parts[2]}@${parts[3]}`)
   }, [])
 
-  // Sync activePost from/to URL hash using slug for descriptive sharing links
   React.useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash) {
-        const post = portfolioData[language].blogPosts.find(p => p.slug === hash);
-        if (post) {
-          setActivePost(post);
-          return;
-        }
-      }
-      if (window.location.hash.startsWith('#') && !['blog', 'projects', 'about', 'contact'].includes(hash)) {
-        // Unknown hash, ignore
-      } else {
-        setActivePost(null);
-      }
-    };
-
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [language]);
-
-  React.useEffect(() => {
-    if (activePost && activePost.slug) {
-      if (window.location.hash !== `#${activePost.slug}`) {
-        window.history.pushState(null, '', `#${activePost.slug}`);
-      }
-    } else if (!activePost && window.location.hash && !['#blog', '#projects', '#about', '#contact'].includes(window.location.hash)) {
-      window.history.pushState(null, '', '#blog');
+    if (!isValidLocale(lang)) {
+      navigate(homePath('es'), { replace: true })
     }
-  }, [activePost]);
+  }, [lang, navigate])
+
+  React.useEffect(() => {
+    if (slug) return
+    const hash = location.hash.replace('#', '')
+    if (!hash || ['blog', 'projects', 'about', 'contact'].includes(hash)) return
+
+    const post = findBlogPostBySlug(language, hash)
+    if (post?.slug) {
+      navigate(blogPostPath(language, post.slug), { replace: true })
+    }
+  }, [location.hash, slug, language, navigate])
+
+  React.useEffect(() => {
+    if (slug) {
+      const post = findBlogPostBySlug(language, slug)
+      if (post) {
+        setActivePost(post)
+      } else {
+        navigate(sectionPath(language, 'blog'), { replace: true })
+      }
+      return
+    }
+    setActivePost(null)
+  }, [slug, language, navigate])
+
+  React.useEffect(() => {
+    if (slug) {
+      window.scrollTo({ top: 0, behavior: 'instant' })
+      return
+    }
+    if (location.hash) {
+      const sectionId = location.hash.replace('#', '')
+      const el = document.getElementById(sectionId)
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [slug, location.hash, location.pathname])
 
   const handleCopyEmail = (e) => {
     e.preventDefault()
@@ -364,7 +401,7 @@ function App() {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         setLightbox(null)
-        setActivePost(null)
+        if (activePost) closePost()
       } else if (lightbox && e.key === 'ArrowRight') {
         setLightbox(prev => {
           if (!prev) return null
@@ -382,10 +419,11 @@ function App() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [lightbox, activePost])
+  }, [lightbox, activePost, closePost])
 
   return (
     <div style={s.page}>
+      <SEOHead language={language} slug={slug} />
       {/* Background Video */}
       <video
         autoPlay
@@ -528,13 +566,13 @@ function App() {
         <div style={s.navInner}>
           <span onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ ...s.logo, fontFamily: "'JetBrains Mono', 'Fira Code', monospace" }}>data.<span style={s.logoAccent}>tales</span></span>
           <div style={s.navLinks}>
-            <a href="#about" style={s.navLink}>{data.nav.profile}</a>
-            <a href="#blog" style={s.navLink}>{data.nav.blog}</a>
+            <a href={sectionPath(language, 'about')} style={s.navLink}>{data.nav.profile}</a>
+            <a href={sectionPath(language, 'blog')} style={s.navLink}>{data.nav.blog}</a>
 
             {/* Bilingual Switch Slider */}
             <div style={{ display: 'flex', alignItems: 'center', background: '#f1f5f9', padding: '3px', borderRadius: '999px', border: '1px solid #e2e8f0', marginLeft: '12px' }}>
               <button
-                onClick={() => setLanguage('es')}
+                onClick={() => handleLanguageChange('es')}
                 style={{
                   padding: '5px 12px',
                   borderRadius: '999px',
@@ -551,7 +589,7 @@ function App() {
                 ESP
               </button>
               <button
-                onClick={() => setLanguage('en')}
+                onClick={() => handleLanguageChange('en')}
                 style={{
                   padding: '5px 12px',
                   borderRadius: '999px',
@@ -618,8 +656,8 @@ function App() {
               {data.personalInfo.bio}
             </p>
             <div style={{ ...s.btns, marginTop: '28px' }}>
-              <a href="#projects" className="cta-button" style={{ ...s.btnPrimary, padding: '9px 20px', fontSize: '12.5px' }}>{data.hero.viewProjects} <IconArrow /></a>
-              <a href="#contact" style={{ ...s.btnSecondary, padding: '9px 20px', fontSize: '12.5px' }}><IconMail /> {data.hero.contact}</a>
+              <a href={sectionPath(language, 'projects')} className="cta-button" style={{ ...s.btnPrimary, padding: '9px 20px', fontSize: '12.5px' }}>{data.hero.viewProjects} <IconArrow /></a>
+              <a href={sectionPath(language, 'contact')} style={{ ...s.btnSecondary, padding: '9px 20px', fontSize: '12.5px' }}><IconMail /> {data.hero.contact}</a>
             </div>
 
             {/* Social Proof Hook */}
@@ -649,7 +687,7 @@ function App() {
             zIndex: 10,
           }}>
             <a
-              href="#projects"
+              href={sectionPath(language, 'projects')}
               className="scroll-indicator"
               style={{
                 display: 'flex',
@@ -780,7 +818,7 @@ function App() {
               <div
                 key={post.id}
                 style={{ ...s.card, cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '260px', padding: '28px 30px' }}
-                onClick={() => setActivePost(post)}
+                onClick={() => openPost(post)}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(74, 222, 128, 0.5)'; e.currentTarget.style.transform = 'translateY(-4px)' }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'; e.currentTarget.style.transform = 'translateY(0)' }}
               >
@@ -1252,7 +1290,7 @@ function App() {
             justifyContent: 'center',
             padding: '80px 24px'
           }}
-          onClick={() => setActivePost(null)}
+          onClick={closePost}
         >
           {/* Scroll progress bar */}
           <div style={{
@@ -1292,7 +1330,7 @@ function App() {
             {/* Header controls */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '20px', marginBottom: '12px' }}>
               <button
-                onClick={() => setActivePost(null)}
+                onClick={closePost}
                 style={{
                   background: 'transparent',
                   border: 'none',
@@ -1312,7 +1350,7 @@ function App() {
                 ← {language === 'es' ? 'Volver al portafolio' : 'Back to portfolio'}
               </button>
               <button
-                onClick={() => setActivePost(null)}
+                onClick={closePost}
                 style={{
                   background: 'rgba(255, 255, 255, 0.05)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -1590,10 +1628,7 @@ function App() {
                     <div>
                       {prevPost && (
                         <button
-                          onClick={() => {
-                            // Find corresponding post in current data language array
-                            setActivePost(prevPost)
-                          }}
+                          onClick={() => openPost(prevPost)}
                           style={{
                             background: 'rgba(255, 255, 255, 0.03)',
                             border: '1px solid rgba(255, 255, 255, 0.08)',
@@ -1622,9 +1657,7 @@ function App() {
                     <div>
                       {nextPost && (
                         <button
-                          onClick={() => {
-                            setActivePost(nextPost)
-                          }}
+                          onClick={() => openPost(nextPost)}
                           style={{
                             background: 'rgba(255, 255, 255, 0.03)',
                             border: '1px solid rgba(255, 255, 255, 0.08)',

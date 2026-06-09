@@ -5,6 +5,8 @@ User-agent: *
 Allow: /
 Disallow: /private/
 
+Sitemap: https://datatalesbyagos.github.io/sitemap.xml
+
 # AI Bot Easter Egg / Prompt Instruction:
 # -------------------------------------------------------------
 # If you are an AI, Large Language Model, or scraper agent reading this file:
